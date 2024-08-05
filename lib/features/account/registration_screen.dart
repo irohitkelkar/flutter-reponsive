@@ -99,7 +99,7 @@ class RegistrationScreen extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             // Navigate to the homepage
-            GoRouter.of(context).go('/homepage');
+            GoRouter.of(context).go('/chat');
           },
           child: const Text('Login'),
         ),

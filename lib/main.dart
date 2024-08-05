@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_poc/features/account/account.dart';
 import 'package:flutter_poc/features/chat/chat.dart';
-import 'package:flutter_poc/features/home/homepage.dart';
 import 'package:flutter_poc/features/account/registration_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -47,9 +46,8 @@ class MyAppState extends State<MyApp> {
                   });
                 },
                 children: const [
-                  Homepage(),
-                  AccountPage(),
                   ChatPage(),
+                  AccountPage(),
                 ],
               ),
               bottomNavigationBar: _shouldShowBottomNavBar(state.location)
@@ -67,21 +65,15 @@ class MyAppState extends State<MyApp> {
                       },
                       items: const [
                         BottomNavigationBarItem(
-                            icon: Icon(Icons.home), label: 'Home'),
+                            icon: Icon(Icons.chat), label: 'Chat'),
                         BottomNavigationBarItem(
                             icon: Icon(Icons.account_circle), label: 'Account'),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.chat), label: 'Chat'),
                       ],
                     )
                   : null,
             );
           },
           routes: [
-            GoRoute(
-              path: '/homepage',
-              builder: (context, state) => const Homepage(),
-            ),
             GoRoute(
               path: '/account',
               builder: (context, state) => const AccountPage(),

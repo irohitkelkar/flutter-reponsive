@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ChatDetailsScreen extends StatefulWidget {
@@ -38,8 +39,15 @@ class ChatDetailsScreenState extends State<ChatDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.chatTitle),
-        centerTitle: false,
+        title: Text(
+          widget.chatTitle,
+        ),
+        foregroundColor: kIsWeb
+            ? Theme.of(context).hintColor
+            : Theme.of(context).primaryColor,
+        backgroundColor: kIsWeb
+            ? Theme.of(context).scaffoldBackgroundColor
+            : Theme.of(context).primaryColor,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 18.0),

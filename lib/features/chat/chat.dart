@@ -109,34 +109,38 @@ class _ChatPageState extends State<ChatPage> {
             );
           },
         ),
-        web: Row(
-          children: [
-            SizedBox(
-              width: 400,
-              child: _ChatList(
-                dummyChats: dummyChats,
-                onChatSelected: (index) {
-                  selectedChat = dummyChats[index];
-                  setState(() {});
-                },
-              ),
-            ),
-            const SizedBox(width: 10),
-            if (selectedChat != null)
-              Expanded(
-                child: ChatDetailsScreen(
-                  chatTitle: selectedChat!['title'],
-                  chatMessages:
-                      (selectedChat!['messages'] as List<Map<String, dynamic>>)
-                          .map((message) {
-                    return {
-                      'sender': message['sender'] as String,
-                      'content': message['content'] as String,
-                    };
-                  }).toList(),
+        web: Container(
+          padding: const EdgeInsets.all(20.0),
+          color: Theme.of(context).shadowColor.withOpacity(0.10),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 400,
+                child: _ChatList(
+                  dummyChats: dummyChats,
+                  onChatSelected: (index) {
+                    selectedChat = dummyChats[index];
+                    setState(() {});
+                  },
                 ),
               ),
-          ],
+              const SizedBox(width: 10),
+              if (selectedChat != null)
+                Expanded(
+                  child: ChatDetailsScreen(
+                    chatTitle: selectedChat!['title'],
+                    chatMessages: (selectedChat!['messages']
+                            as List<Map<String, dynamic>>)
+                        .map((message) {
+                      return {
+                        'sender': message['sender'] as String,
+                        'content': message['content'] as String,
+                      };
+                    }).toList(),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -145,7 +149,6 @@ class _ChatPageState extends State<ChatPage> {
 
 class _ChatList extends StatelessWidget {
   const _ChatList({
-    super.key,
     required this.dummyChats,
     required this.onChatSelected,
   });
@@ -160,7 +163,7 @@ class _ChatList extends StatelessWidget {
       itemBuilder: (context, index) {
         final chat = dummyChats[index];
         return Card(
-          margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
           child: ListTile(
             leading: const Icon(Icons.account_circle),
             title: Text(chat['title']),
