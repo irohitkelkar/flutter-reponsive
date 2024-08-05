@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_poc/responsive_widget.dart';
+import 'package:flutter_poc/shared/utils/responsive_widget.dart';
 import 'package:go_router/go_router.dart';
 
 class AccountPage extends StatelessWidget {
+  const AccountPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
@@ -19,16 +21,17 @@ class AccountPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Account Details', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 20),
-          Text('Name: John Doe', style: TextStyle(fontSize: 18)),
-          Text('Email: john.doe@example.com', style: TextStyle(fontSize: 18)),
-          SizedBox(height: 20),
+          const Text('Account Details', style: TextStyle(fontSize: 24)),
+          const SizedBox(height: 20),
+          const Text('Name: John Doe', style: TextStyle(fontSize: 18)),
+          const Text('Email: john.doe@example.com',
+              style: TextStyle(fontSize: 18)),
+          const SizedBox(height: 20),
           ElevatedButton(
               onPressed: () {
                 GoRouter.of(context).go('/');
               },
-              child: Text('Logout')),
+              child: const Text('Logout')),
         ],
       ),
     );
@@ -36,7 +39,7 @@ class AccountPage extends StatelessWidget {
 
   Widget _buildTabletLayout(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 500,
         child: _buildMobileLayout(context),
       ),
@@ -45,7 +48,7 @@ class AccountPage extends StatelessWidget {
 
   Widget _buildWebLayout(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 800,
         child: _buildMobileLayout(context),
       ),

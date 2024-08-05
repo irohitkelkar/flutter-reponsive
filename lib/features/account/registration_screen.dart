@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_poc/responsive_widget.dart';
+import 'package:flutter_poc/shared/utils/responsive_widget.dart';
 import 'package:go_router/go_router.dart';
 
 class RegistrationScreen extends StatelessWidget {
@@ -77,16 +77,22 @@ class RegistrationScreen extends StatelessWidget {
       children: [
         const SizedBox(height: 10),
         const TextField(
-          decoration: InputDecoration(labelText: 'Name'),
+          keyboardType: TextInputType.phone,
+          decoration: InputDecoration(
+            labelText: 'Mobile Number',
+            hintText: 'Enter your mobile number',
+            prefixIcon: Icon(Icons.phone), // Optional icon
+            border: OutlineInputBorder(),
+          ),
         ),
         const SizedBox(height: 10),
         const TextField(
-          decoration: InputDecoration(labelText: 'Email'),
-        ),
-        const SizedBox(height: 10),
-        const TextField(
-          decoration: InputDecoration(labelText: 'Password'),
-          obscureText: true,
+          decoration: InputDecoration(
+            labelText: 'Password',
+            hintText: 'Enter your password',
+            prefixIcon: Icon(Icons.remove_red_eye), // Optional icon
+            border: OutlineInputBorder(),
+          ),
         ),
         const SizedBox(height: 20),
         ElevatedButton(

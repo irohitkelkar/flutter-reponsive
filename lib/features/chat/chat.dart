@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_poc/responsive_widget.dart';
+import 'package:flutter_poc/shared/utils/responsive_widget.dart';
 import 'chat_details_screen.dart';
 
 class ChatPage extends StatefulWidget {

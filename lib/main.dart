@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_poc/account.dart';
-import 'package:flutter_poc/chat.dart';
-import 'package:flutter_poc/homepage.dart';
-import 'package:flutter_poc/registration_screen.dart';
+import 'package:flutter_poc/features/account/account.dart';
+import 'package:flutter_poc/features/account/registration_screen.dart';
+import 'package:flutter_poc/features/chat/chat.dart';
+import 'package:flutter_poc/features/home/homepage.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -66,9 +66,12 @@ class MyAppState extends State<MyApp> {
             GoRoute(
                 path: '/',
                 builder: (context, state) => const RegistrationScreen()),
-            GoRoute(path: '/homepage', builder: (context, state) => Homepage()),
             GoRoute(
-                path: '/account', builder: (context, state) => AccountPage()),
+                path: '/homepage',
+                builder: (context, state) => const Homepage()),
+            GoRoute(
+                path: '/account',
+                builder: (context, state) => const AccountPage()),
             GoRoute(
                 path: '/chat', builder: (context, state) => const ChatPage()),
           ],

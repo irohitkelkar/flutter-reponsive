@@ -11,10 +11,10 @@ class ChatDetailsScreen extends StatefulWidget {
   });
 
   @override
-  _ChatDetailsScreenState createState() => _ChatDetailsScreenState();
+  ChatDetailsScreenState createState() => ChatDetailsScreenState();
 }
 
-class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
+class ChatDetailsScreenState extends State<ChatDetailsScreen> {
   final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 

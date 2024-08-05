@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_poc/responsive_widget.dart';
+import 'package:flutter_poc/shared/utils/responsive_widget.dart';
 
 class Homepage extends StatelessWidget {
+  const Homepage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
@@ -13,10 +15,10 @@ class Homepage extends StatelessWidget {
 
   Widget _buildMobileLayout() {
     return ListView(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       children: [
-        Text('Welcome to the Homepage!', style: TextStyle(fontSize: 24)),
-        SizedBox(height: 20),
+        const Text('Welcome to the Homepage!', style: TextStyle(fontSize: 24)),
+        const SizedBox(height: 20),
         _buildCard(),
         _buildCard(),
         _buildCard(),
@@ -26,7 +28,7 @@ class Homepage extends StatelessWidget {
 
   Widget _buildTabletLayout() {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 500,
         child: _buildMobileLayout(),
       ),
@@ -35,7 +37,7 @@ class Homepage extends StatelessWidget {
 
   Widget _buildWebLayout() {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 800,
         child: _buildMobileLayout(),
       ),
@@ -43,7 +45,7 @@ class Homepage extends StatelessWidget {
   }
 
   Widget _buildCard() {
-    return Card(
+    return const Card(
       child: Padding(
         padding: EdgeInsets.all(16),
         child: Text('This is a dummy card', style: TextStyle(fontSize: 18)),
