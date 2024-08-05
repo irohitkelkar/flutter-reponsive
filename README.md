@@ -1,16 +1,15 @@
-# flutter_poc
+# Flutter Responsive App
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+This Flutter app demonstrates responsive design capabilities across mobile, tablet, and web platforms. It includes a registration screen and a chat feature with a tab layout that adjusts based on the device's screen size.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **Responsive Design**: Adapts the UI for mobile, tablet, and web platforms.
+- **Registration Screen**: Includes user registration details with a responsive layout.
+- **Chat Feature**: Structured with separate chat list and chat details widgets, displaying content differently on mobile/tablets versus web.
+- **Tab Layout**: Integrated with `go_router` for navigation between homepage, account, and chat sections.
+- **Theming**: Uses a unified theme for consistent styling across the app.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
