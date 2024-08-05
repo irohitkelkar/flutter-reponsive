@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_poc/features/account/account.dart';
-import 'package:flutter_poc/features/account/registration_screen.dart';
 import 'package:flutter_poc/features/chat/chat.dart';
 import 'package:flutter_poc/features/home/homepage.dart';
-
+import 'package:flutter_poc/features/account/registration_screen.dart';
 import 'package:go_router/go_router.dart';
 
 void main() {
@@ -18,6 +17,9 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  final PageController _pageController = PageController();
+  int _currentIndex = 0;
+
   late final GoRouter _router;
 
   @override
@@ -26,29 +28,41 @@ class MyAppState extends State<MyApp> {
     _router = GoRouter(
       initialLocation: '/',
       routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const RegistrationScreen(),
+        ),
         ShellRoute(
           builder: (context, state, child) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Responsive Tab Layout'),
+                title: const Text('Responsive PageView Layout'),
               ),
-              body: child,
+              body: PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                children: const [
+                  Homepage(),
+                  AccountPage(),
+                  ChatPage(),
+                ],
+              ),
               bottomNavigationBar: _shouldShowBottomNavBar(state.location)
                   ? BottomNavigationBar(
-                      currentIndex: _calculateSelectedIndex(state.location),
+                      currentIndex: _currentIndex,
                       onTap: (index) {
-                        switch (index) {
-                          case 0:
-                            GoRouter.of(context).go('/homepage');
-                            break;
-                          case 1:
-                            GoRouter.of(context).go('/account');
-
-                            break;
-                          case 2:
-                            GoRouter.of(context).go('/chat');
-                            break;
-                        }
+                        _pageController.animateToPage(
+                          index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                        setState(() {
+                          _currentIndex = index;
+                        });
                       },
                       items: const [
                         BottomNavigationBarItem(
@@ -64,16 +78,17 @@ class MyAppState extends State<MyApp> {
           },
           routes: [
             GoRoute(
-                path: '/',
-                builder: (context, state) => const RegistrationScreen()),
+              path: '/homepage',
+              builder: (context, state) => const Homepage(),
+            ),
             GoRoute(
-                path: '/homepage',
-                builder: (context, state) => const Homepage()),
+              path: '/account',
+              builder: (context, state) => const AccountPage(),
+            ),
             GoRoute(
-                path: '/account',
-                builder: (context, state) => const AccountPage()),
-            GoRoute(
-                path: '/chat', builder: (context, state) => const ChatPage()),
+              path: '/chat',
+              builder: (context, state) => const ChatPage(),
+            ),
           ],
         ),
       ],
@@ -82,13 +97,6 @@ class MyAppState extends State<MyApp> {
 
   bool _shouldShowBottomNavBar(String location) {
     return location != '/';
-  }
-
-  int _calculateSelectedIndex(String location) {
-    if (location.startsWith('/homepage')) return 0;
-    if (location.startsWith('/account')) return 1;
-    if (location.startsWith('/chat')) return 2;
-    return 0;
   }
 
   @override
@@ -116,27 +124,38 @@ class MyAppState extends State<MyApp> {
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: Colors.grey, width: 1),
           ),
-          labelStyle: const TextStyle(color: Colors.blue),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor:
-              Colors.white, // Background color of the BottomNavigationBar
-          selectedItemColor: Colors.blueAccent, // Color of the selected item
-          unselectedItemColor: Colors.grey, // Color of the unselected items
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.blueAccent,
+          unselectedItemColor: Colors.grey,
           selectedLabelStyle: TextStyle(
-            fontWeight: FontWeight.bold, // Make selected item label bold
+            fontWeight: FontWeight.bold,
           ),
           unselectedLabelStyle: TextStyle(
-            fontWeight:
-                FontWeight.normal, // Normal weight for unselected item labels
+            fontWeight: FontWeight.normal,
           ),
-          type: BottomNavigationBarType
-              .fixed, // Fixed layout for the BottomNavigationBar
-          elevation: 8, // Elevation for shadow effect
-          showUnselectedLabels: true, // Show labels for unselected items
-          showSelectedLabels: true, // Show labels for selected items
-          landscapeLayout: BottomNavigationBarLandscapeLayout
-              .linear, // Layout in landscape mode
+          type: BottomNavigationBarType.fixed,
+          elevation: 8,
+          showUnselectedLabels: true,
+          showSelectedLabels: true,
+          landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStateProperty.all<Color>(
+                const Color.fromARGB(255, 1, 139, 251)),
+            foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+            padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0)),
+            textStyle: WidgetStateProperty.all<TextStyle>(
+                const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ),
         ),
       ),
     );
