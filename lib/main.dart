@@ -36,7 +36,8 @@ class MyAppState extends State<MyApp> {
           builder: (context, state, child) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Responsive PageView Layout'),
+                title: const Text('Traders App'),
+                centerTitle: true,
               ),
               body: PageView(
                 controller: _pageController,

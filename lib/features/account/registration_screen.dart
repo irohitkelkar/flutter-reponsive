@@ -75,6 +75,7 @@ class RegistrationScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        const Text('Log in to Traders', style: TextStyle(fontSize: 24)),
         const SizedBox(height: 10),
         const TextField(
           keyboardType: TextInputType.phone,

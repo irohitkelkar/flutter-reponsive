@@ -82,8 +82,8 @@ class ChatDetailsScreenState extends State<ChatDetailsScreen> {
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   child: Container(
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 16),
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: isUserMessage ? Colors.blue : Colors.grey[300],
